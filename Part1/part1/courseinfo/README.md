@@ -12,6 +12,7 @@ In the project directory, inside the src folder you will find:
 #### Index.js
 
 Which has the solution for the exercise 1.1 codeinfo step 1
+and solution for exercise 1.2 codeinfo step 2
 
 
 Carlos
