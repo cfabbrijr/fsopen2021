@@ -1,6 +1,6 @@
 import React from 'react';
 // Code developed by Carlos Fabbri Jr for the Course FSOpen2021
-//Date : December 02, 2021
+//Date : December 02, 2021 tru December 03, 2021
 
 const Header = (props) => {
   return (
@@ -10,12 +10,22 @@ const Header = (props) => {
   )
 }
 
-const Content = (props) => {
+const Part = (props) => {
   return (
     <div>
       <p>
-        {props.part} {props.exercises}
+      {props.part} {props.exercises}
       </p>
+    </div>
+  )
+}
+
+const Content = (props) => {
+  return (
+    <div>
+      <Part part = 'Fundamentals of React' exercises = {10}/>
+      <Part part = 'Using props to pass data' exercises = {7}/>
+      <Part part = 'State of a component' exercises = {14}/>
     </div>
   )
 }
@@ -35,9 +45,7 @@ const App = () => {
   return (
     <div>
       <Header course = 'Half Stack application development'/>
-      <Content part = 'Fundamentals of React' exercises = {10}/>
-      <Content part = 'Using props to pass data' exercises = {7} />
-      <Content part = 'State of a component' exercises = {14} />
+      <Content/>
       <Total exercises1 = {10} exercises2 = {7} exercises3 = {14}/>
     </div>
   );
