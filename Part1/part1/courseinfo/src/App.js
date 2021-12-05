@@ -1,6 +1,6 @@
 import React from 'react';
 // Code developed by Carlos Fabbri Jr for the Course FSOpen2021
-//Date : December 02, 2021 tru December 03, 2021
+//Date : December 02, 2021 tru December 05, 2021
 
 const Header = (props) => {
  // console.log(props)
@@ -23,21 +23,21 @@ const Part = (props) => {
 }
 
 const Content = (props) => {
- console.log(props)
+// console.log(props)
   return (
     <div>
-    <Part name={props.part1.name} exercises={props.part1.exercises}/>
-    <Part name={props.part2.name} exercises={props.part2.exercises}/>
-    <Part name={props.part3.name} exercises={props.part3.exercises}/>
-    </div>
-  )
+    <Part name={props.part[0].name} exercises={props.part[0].exercises}/>
+    <Part name={props.part[1].name} exercises={props.part[1].exercises}/>
+    <Part name={props.part[2].name} exercises={props.part[2].exercises}/>
+   </div>
+ )
 }
 
 
 const Total = (props) => {
   return (
     <div>
-      <p> Number of exercises {props.exercises1 + props.exercises2 + props.exercises3}
+      <p> Number of exercises {props.part[0].exercises + props.part[1].exercises + props.part[2].exercises}
       </p>
     </div>
   )
@@ -47,24 +47,26 @@ const Total = (props) => {
 const App = () => {
 
   const curso = 'Half Stack application development'
-  const part1 = {
-    name: 'Fundamentals of React',
-    exercises: 10
-  }
-  const part2 = {
-    name: 'Using props to pass data',
-    exercises: 7
-  }
-  const part3 = {
-    name: 'State of a component',
-    exercises: 14
-  }
-
+  const parts = [
+    {
+      name: 'Fundamentals of React',
+      exercises: 10
+    },
+    {
+      name: 'Using props to pass data',
+      exercises: 7
+    },
+    {
+      name: 'State of a component',
+      exercises: 14
+    }
+  ]
+  //console.log(parts)
   return (
     <div>
       <Header course={curso}/>
-      <Content part1={part1} part2={part2} part3={part3} />
-      <Total exercises1 = {part1.exercises} exercises2 = {part2.exercises} exercises3 = {part3.exercises}/>
+      <Content part={parts} />
+      <Total part={parts} />
     </div>
   );
 }
