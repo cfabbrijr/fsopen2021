@@ -1,7 +1,29 @@
-// Code to exercise_1.7 unicafe*
+// Code to exercise_1.8 unicafe*
 // Developed by Carlos Fabbri Jr on december 09, 2021
 
 import React, { useState } from 'react'
+
+const Statistics = ({good, bad, neutral, all, positive, average}) => {
+
+  return (
+
+    <div>
+          <div>
+            <h1>Statistics</h1>
+          </div>
+          <div>
+            Good {good}<br></br>
+            Neutral {neutral}<br></br>
+            Bad {bad} <br></br>
+            All {all} <br></br>
+            Average {average = ((good*1 + neutral*0 + bad*-1)/all)} <br></br>
+            Positive {(positive/all)*100} % <br></br>
+          </div>
+    </div>
+
+  )
+
+}
 
 
 const App = () => {
@@ -14,8 +36,6 @@ const App = () => {
   const [positive, setPositive] = useState(0)
   let average = 0
 
-
-
   return (
     <div>
 
@@ -27,15 +47,8 @@ const App = () => {
     <button onClick={() => {setNeutral(neutral + 1);  ; setAll(all + 1)}} > Neutral </button>
     <button onClick={() => {setBad(bad + 1)  ; setAll(all + 1)}} > Bad </button>
 
-    <div><h1>Statistics</h1></div>
+    <Statistics good={good} bad={bad} neutral={neutral} all={all} positive={positive} average={average}/>
 
-    Good {good} <br></br>
-    Neutral {neutral} <br></br>
-    Bad {bad}<br></br>
-    All {all} <br></br>
-    Average {average = ((good*1 + neutral*0 + bad*-1)/all)} <br></br>
-    Positive {(positive/all)*100} %
-      
     </div>
   )
 }
