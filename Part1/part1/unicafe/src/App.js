@@ -1,10 +1,18 @@
-// Code to exercise_1.8 unicafe*
+// Code to exercise_1.9 unicafe*
 // Developed by Carlos Fabbri Jr on december 09, 2021
 
 import React, { useState } from 'react'
 
 const Statistics = ({good, bad, neutral, all, positive, average}) => {
 
+  if (all === 0) {
+    return (
+      <div>
+       <h2> No feedback given</h2>
+      </div>
+    )
+  }
+  
   return (
 
     <div>
