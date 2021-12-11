@@ -4,16 +4,20 @@
 import React, { useState } from 'react'
 
 const Button = ({ handleClick, text }) => (
+  // component created to handle user interaction on page
+  // Each button will have its own method and text label 
   <button onClick={handleClick}>
     {text}
   </button>
 )
 
 const Statisticsline = (props) => <tr><td>{props.textinicio}</td><td>{props.value}</td><td>{props.textend}</td></tr>
+// component created to deal with the display of statistics'values calculated on each line
 
 
 const Statistics = ({good, bad, neutral, all, positive, average}) => {
-
+// component created to show the statistics values of user choices on the page buttons
+// It has a test for all variable to conditionally show the user a initial message or the statistics panel
   if (all === 0) {
     return (
       <div>
@@ -57,17 +61,20 @@ const App = () => {
   let average = 0
   
   const handleGood = () => {
+    // function call to handle what to do when user clicks the good button
     setGood(good + 1)
     setAll(all + 1)
     setPositive(positive + 1)
   }
 
   const handleNeutral = () => {
+    // function call to handle what to do when user clicks the neutral button
     setNeutral(neutral + 1)
     setAll(all + 1)
   }
 
   const handleBad = () => {
+    // function call to handle what to do when user clicks the bad button
     setBad(bad + 1)
     setAll(all + 1)
   }
