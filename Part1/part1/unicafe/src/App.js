@@ -1,4 +1,4 @@
-// Code to exercise_1.10 unicafe*
+// Code to exercise_1.11 unicafe*
 // Developed by Carlos Fabbri Jr on december 10, 2021
 
 import React, { useState } from 'react'
@@ -9,15 +9,7 @@ const Button = ({ handleClick, text }) => (
   </button>
 )
 
-const Statisticsline = ({ text , value, textend }) => {
-  return (
-    <div>
-      {text} {value} {textend}
-    </div>
-  )
-}
-
-
+const Statisticsline = (props) => <tr><td>{props.textinicio}</td><td>{props.value}</td><td>{props.textend}</td></tr>
 
 
 const Statistics = ({good, bad, neutral, all, positive, average}) => {
@@ -36,15 +28,17 @@ const Statistics = ({good, bad, neutral, all, positive, average}) => {
           <div>
             <h1>Statistics</h1>
           </div>
-          <div>
-            <Statisticsline text="Good" value={good}/>
-            <Statisticsline text="Neutral" value={neutral}/>
-            <Statisticsline text="Bad" value={bad}/>
-            <Statisticsline text="All" value={all}/>
-            <Statisticsline text="Good" value={good}/>
-            <Statisticsline text="Average" value={average = ((good*1 + neutral*0 + bad*-1)/all)}/>
-            <Statisticsline text="Positive" value={(positive/all)*100} textend="%"/>
-          </div>
+
+          <table>
+            <tbody>
+              <Statisticsline textinicio="Good" value={good}/>
+              <Statisticsline textinicio="Neutral" value={neutral}/>
+              <Statisticsline textinicio="Bad" value={bad}/>
+              <Statisticsline textinicio="All" value={all}/>
+              <Statisticsline textinicio="Average" value={average=((good*1 + neutral*0 + bad*-1)/all)}/>
+              <Statisticsline textinicio="Positive" value={(positive/all)*100} textend="%"/>
+            </tbody>
+          </table>
     </div>
 
   )
@@ -88,7 +82,7 @@ const App = () => {
     <Button handleClick={handleNeutral} text='Neutral' />
     <Button handleClick={handleBad} text='Bad'/>
 
-    <Statistics good={good} bad={bad} neutral={neutral} all={all} positive={positive} average={average}/>
+    <Statistics good={good} bad={bad} neutral={neutral} all={all} positive={positive }average={average}/>
 
     </div>
   )
