@@ -1,8 +1,7 @@
-// Code solution for exercise 1.12 anecdotes
+// Code solution for exercise 1.13 anecdotes
 // Developed by Carlos Fabbri Jr on December 11, 2021
 
 import React, { useState } from 'react'
-
 
 const App = () => {
   const anecdotes = [
@@ -16,6 +15,7 @@ const App = () => {
   ]
 
   const [selected, setSelected] = useState(0)
+  const [allVotes, setAll] = useState([])
 
   const handleRandomAnecdote = () => {
     // this function generates random numbers between 0 and anecdotes.lenght minus one, due to Math.random limits
@@ -23,12 +23,25 @@ const App = () => {
     setSelected(Math.floor(Math.random()*(anecdotes.length)))
   }
 
+  const handleVotes = () => {
+    // This function populates the allVotes array with the index of the voted anecdote
+    setAll(allVotes.concat(selected))
+  }
+
+  const counts = {};
+  // this function register the frequency of each number voted
+    for (const num of allVotes) {
+      counts[num] = counts[num] ? counts[num] + 1 : 1
+    }
+
   return (
     <>
     <div>
-      {anecdotes[selected]}
+      {anecdotes[selected]}<br></br>
+      Has {counts[selected]}  votes
     </div>
     <div>
+    <button onClick={handleVotes}>vote</button>
     <button onClick={handleRandomAnecdote}>next anecdote</button>
     </div>
     </>
