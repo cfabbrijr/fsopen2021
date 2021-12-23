@@ -1,39 +1,37 @@
-// Initial code for exercise_2.1 courseinfo step 6
+// Initial code for exercise_2.3 courseinfo step 8
 // Initial code structure supplied from Models Anwers @ Helsinki course stats
 // Code developed by Carlos Fabbri Jr for the FSOpen2021 Course
-// On December 16, 2021
+// On December 22, 2021
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Header = ({ course }) => {
+const Header = ({course}) => {
   return (
-    <h1>{course.name}</h1>
+          <h1>{course.name}</h1>
   )
 }
 
 const Total = ({ course }) => {
-  const sum = course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises + course.parts[3].exercises
+  const soma = course.parts.reduce((soma, course) => soma + course.exercises , 0)
   return(
-    <p>Total of {sum} exercises</p>
+    <p>Total of {soma} exercises</p>
   ) 
 }
 
-const Part = (props) => {
+const Part = ({course}) => {
   return (
-    <p>
-      {props.part.name} {props.part.exercises}
-    </p>    
+    <div>
+      {course.parts.map(course => <p key={course.id}>{course.name} {course.exercises}</p>)}
+    </div>
+ 
   )
 }
 
-const Content = ({ course }) => {
+const Content = ({course}) => {
   return (
     <div>
-      <Part part={course.parts[0]} />
-      <Part part={course.parts[1]} />
-      <Part part={course.parts[2]} />
-      <Part part={course.parts[3]} />
+     <Part course={course}/>
     </div>
   )
 }
@@ -73,6 +71,11 @@ const App = () => {
         name: 'Adicionado para teste',
         exercises: 9,
         id: 4
+      },
+      {
+        name: 'Adicionado para teste depois de 2.3',
+        exercises: 13,
+        id: 5
       }
     ]
   }
