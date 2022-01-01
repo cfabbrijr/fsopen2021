@@ -1,90 +1,122 @@
-// Initial code for exercise_2.3 courseinfo step 8
+// Initial code for exercise_2.4 courseinfo step 9
 // Initial code structure supplied from Models Anwers @ Helsinki course stats
 // Code developed by Carlos Fabbri Jr for the FSOpen2021 Course
-// On December 22, 2021
+// On December 27, 2021
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Header = ({course}) => {
+const Header = ({courses}) => {
   return (
-          <h1>{course.name}</h1>
+      <div>
+       <h2>{courses.map(course => <p key={course.id}>{course.name}</p>)}</h2>
+      </div>
   )
 }
 
-const Total = ({ course }) => {
-  const soma = course.parts.reduce((soma, course) => soma + course.exercises , 0)
-  return(
-    <p>Total of {soma} exercises</p>
-  ) 
-}
-
-const Part = ({course}) => {
+const Part = ({courses}) => {
   return (
     <div>
-      {course.parts.map(course => <p key={course.id}>{course.name} {course.exercises}</p>)}
+      {courses.map(course => course.parts.map(part =>  <p key={part.id}>{part.name} has {part.exercises}  exercises</p> ))}
     </div>
  
   )
 }
 
-const Content = ({course}) => {
+const Content = ({courses}) => {
   return (
-    <div>
-     <Part course={course}/>
-    </div>
+      <div>
+        <Part courses={courses} />
+      </div>
   )
 }
 
+const Total = ({ courses }) => {
 
-const Course = ({course}) => {
-  return (
+  const mostra = courses.map(course => course.parts.map(part =>  <p key={part.id}> {part.id} {part.exercises}</p> ))
+
+    return (
     <div>
-      <Header course={course} />
-      <Content course={course} />
-      <Total course={course}/>
+      Total of {mostra} exercises
     </div>
-  )
+  ) 
+}
+
+
+const Course = ({courses}) => {
+
+    return (
+      <div>
+        <Header key={courses.id} courses={courses} />
+        <Content courses={courses} />
+        <Total courses={courses}/>
+      </div>
+    )
+
 }
 
 const App = () => {
-  const course = {
-    id: 1,
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10,
-        id: 1
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7,
-        id: 2
-      },
-      {
-        name: 'State of a component',
-        exercises: 14,
-        id: 3
-      },
-      {
-        name: 'Adicionado para teste',
-        exercises: 9,
-        id: 4
-      },
-      {
-        name: 'Adicionado para teste depois de 2.3',
-        exercises: 13,
-        id: 5
-      }
-    ]
-  }
+  const courses = [
+    {
+      id: 1,
+      name: 'Half Stack application development',
+      parts: [
+        {
+          name: 'Fundamentals of React',
+          exercises: 10,
+          id: 1
+        },
+        {
+          name: 'Using props to pass data',
+          exercises: 7,
+          id: 2
+        },
+        {
+          name: 'State of a component',
+          exercises: 14,
+          id: 3
+        },
+        {
+          name: 'Adicionado para teste',
+          exercises: 9,
+          id: 4
+        },
+        {
+          name: 'Adicionado para teste depois de 2.3',
+          exercises: 13,
+          id: 5
+        }
+      ]
+    },
+    {
+        id: 2,
+        name: 'Node.js',
+        parts: [
+          {
+            name: 'Routing',
+            exercises: 3,
+            id: 1
+          },
+          {
+            name: 'Middlewares',
+            exercises: 7,
+            id: 2
+          }
+        ]
+    },
+  ]
 
   return (
     <div>
-      <Course course={course} />
+      <h1>Web Development Curriculum</h1>
+
+      <div>
+        <Course courses={courses}/>
+      </div>
+
     </div>
   )
+
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
