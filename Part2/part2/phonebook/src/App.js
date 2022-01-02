@@ -11,34 +11,36 @@ const App = () => {
   ]) 
   const [newName, setNewName] = useState('')
 
+
   // Method to add the name inputed by user on page
-  const addName = (n) => { 
+
+  const addName = n => {
     n.preventDefault()
 
-    // variable created to receive the name inputed by user
-    const addedName = {
-      name: newName,
+  // variable created to receive the name inputed by user
+    const addedName = persons.map(person => person.name)
+    if (addedName.includes(newName.trim())) {
+      alert(`${newName} is already added to phonebook`)
+      setNewName('') // reset the input value field
+    } else {
+      setPersons(persons.concat({ name: newName }))  // correct way to add the name inputed on the persons array
+      setNewName('') // reset the input value field
     }
-  
-    setPersons(persons.concat(addedName)) // correct way to add the name inputed on the persons array
-    setNewName('') // reset the input value field
-
   }
 
   // Method to handle with the change on input value fied
   const handleNameInput = (h) => {
-    setNewName(h.target.value) 
-  }
-
-
+      setNewName(h.target.value)
+      }
+  
   return (
     <div>
       <h2>Phonebook</h2>
       <form onSubmit={addName}>
         <div>
           name: <input 
-                        value={newName} 
-                        onChange={handleNameInput}
+                  value={newName} 
+                  onChange={handleNameInput}
                 />
         </div>
         <div>
