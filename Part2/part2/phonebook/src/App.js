@@ -1,8 +1,11 @@
-// Code to exercise 2.9 Phonebook Step4
+// Code to exercise 2.10 Phonebook Step5
 // Developed by Carlos Fabbri Jr for FSopen2021 
-// on January 5, 2022
+// on January 7, 2022
 
 import React, { useState } from 'react'
+import Filter from './components/Filter'
+import Personform from './components/PersonForm'
+import Persons from './components/Persons'
 
 const App = () => {
 
@@ -45,41 +48,15 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
 
-        <div>
-        filter shown with a: <input value={filter} onChange={handleSearchInput}/>  
-        </div>
-
+      <Filter filter={filter} handleSearchInput={handleSearchInput}/>
 
       <h3>Add a new </h3>
 
-      <form onSubmit={addPerson}>
-        <div>
-          name: <input 
-                  value={newName} 
-                  onChange={handleNameInput}
-                />
-        </div>
-        <div>
-          phone: <input 
-                  value={newPhone} 
-                  onChange={handlePhoneInput}
+      <Personform newName={newName} newPhone={newPhone} handleNameInput={handleNameInput} handlePhoneInput={handlePhoneInput} addPerson={addPerson}/>
 
-                />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
       <h3>Numbers</h3>
-      <div>
-        {filter ? 
-          persons
-                .filter(({name}) => name.toLowerCase().includes(filter.toLowerCase()))
-                .map((person) => <p key={person.id}>{person.name} {person.number}</p>)
-          :
-          persons.map((person) => <p key={person.id}> {person.name} {person.number} </p>)
-        }
-      </div>
+
+      <Persons filter={filter} persons={persons}/>
       
     </div>
   )
